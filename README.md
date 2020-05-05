@@ -10,11 +10,9 @@ Based on the latest release of the [Apache Livy project](https://livy.incubator.
 
 ### Supported Versions:
 
-Livy-Server: 0.5.0
+Livy-Server: 0.7.0
 
-Apache Spark: 2.3.1
-
-Python: Python3 (including boto3 1.9)
+Apache Spark: 2.4.4
 
 
 
