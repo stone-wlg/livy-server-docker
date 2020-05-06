@@ -32,7 +32,7 @@ function livy_server_service(){
 
     export SPARK_HOME=/opt/spark-$SPARK_VERSION-bin-hadoop2.7/
     echo "starting Livy Server!"
-    /opt/${APACHE}livy-$LIVY_VERSION-incubating-bin/bin/livy-server start
+    /opt/apache-livy-$LIVY_VERSION-incubating-bin/bin/livy-server start 
 
     # whatever blocking call 
     tail -f /dev/null
@@ -40,7 +40,7 @@ function livy_server_service(){
 
 function main(){
     validate
-    write_config_options /opt/${APACHE}livy-$LIVY_VERSION-incubating-bin/conf/livy.conf
+    write_config_options /opt/apache-livy-$LIVY_VERSION-incubating-bin/conf/livy.conf
     livy_server_service
     start 
     echo "done. now waiting for services."
