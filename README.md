@@ -10,8 +10,6 @@ Based on the latest release of the [Apache Livy project](https://livy.incubator.
 
 ### Supported Versions:
 
-Livy-Server: 0.7.0
-
 Apache Spark: 2.4.4
 
 

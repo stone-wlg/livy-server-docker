@@ -17,4 +17,4 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: davlum/livy
-          tags: 0.7.0-spark2.4.4
+          tags: 0.6.0-spark2.4.4

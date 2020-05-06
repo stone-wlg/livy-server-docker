@@ -13,7 +13,7 @@ RUN yum update -y && yum install -y \
 RUN mkdir /opt/apache-livy /var/apache-spark-binaries
 
 ENV SPARK_VERSION 2.4.4
-ENV LIVY_VERSION 0.7.0
+ENV LIVY_VERSION 0.6.0
 ENV SPARK_HOME /opt/spark-$SPARK_VERSION-bin-hadoop2.7
 
 # binaries
