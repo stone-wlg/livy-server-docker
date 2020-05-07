@@ -13,10 +13,13 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v2
+      - name: Get branch name
+        id: branch
+        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
       - name: Push to Dockerhub
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: davlum/livy
-          tags: ${GITHUB_REF#refs/*/}-spark2.4.4
+          tags: ${{ steps.branch.outputs.short_ref }}-spark2.4.4
