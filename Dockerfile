@@ -11,9 +11,9 @@ RUN yum update -y && yum install -y \
   && rm -rf /var/cache/yum
 
 ENV SPARK_VERSION 2.4.4
-ENV LIVY_VERSION 0.5.0
+ENV LIVY_VERSION 0.6.0
 ENV SPARK_HOME /opt/spark-$SPARK_VERSION-bin-hadoop2.7
-ENV APACHE=""
+ENV APACHE apache-
 
 # apache livy
 RUN wget https://archive.apache.org/dist/incubator/livy/$LIVY_VERSION-incubating/${APACHE}livy-$LIVY_VERSION-incubating-bin.zip -O /tmp/livy.zip && \
