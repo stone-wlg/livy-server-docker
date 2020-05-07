@@ -27,7 +27,7 @@ Livy Server start on default port 8998
 ### Usage:
 
 ```bash
-docker run -d -p 8998:8998 -e SPARK_MASTER_ENDPOINT=spark -e SPARK_MASTER_PORT=7077 -e DEPLOY_MODE=client davlum/livy:0.7.0
+docker run -p 8998:8998 -e SPARK_MASTER_ENDPOINT=spark -e SPARK_MASTER_PORT=7077 -e DEPLOY_MODE=client davlum/livy:0.7.0-spark2.4.4
 ```
 
 
