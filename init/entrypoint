@@ -8,7 +8,7 @@ GLOBAL_VAR="xyz"
 # validate if all container variables are set
 ##############################################################################
 function validate(){
-    vars="SPARK_MASTER_ENDPOINT SPARK_MASTER_PORT DEPLOY_MODE"
+    vars="SPARK_MASTER DEPLOY_MODE"
     for var in $vars; do
         if [[ $(env | awk -F "=" '{print $1}' | grep "^$var$") != "$var" ]]; then
             echo "$var not set but required."
@@ -29,10 +29,9 @@ function write_config_options(){
 
 
 function livy_server_service(){
-
-    export SPARK_HOME=/opt/spark-$SPARK_VERSION-bin-hadoop2.7/
+    export SPARK_HOME=/opt/spark
     echo "starting Livy Server!"
-    /opt/${APACHE}livy-$LIVY_VERSION-incubating-bin/bin/livy-server start
+    /opt/livy/bin/livy-server start
 
     # whatever blocking call 
     tail -f /dev/null
@@ -40,7 +39,7 @@ function livy_server_service(){
 
 function main(){
     validate
-    write_config_options /opt/${APACHE}livy-$LIVY_VERSION-incubating-bin/conf/livy.conf
+    write_config_options /opt/livy/conf/livy.conf
     livy_server_service
     start 
     echo "done. now waiting for services."

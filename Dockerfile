@@ -1,6 +1,10 @@
 # select operating system
 FROM amazoncorretto:8
 
+ARG SPARK_VERSION
+ARG LIVY_VERSION
+ARG APACHE
+
 RUN yum update -y && yum install -y \
     gzip \
     unzip \
@@ -10,25 +14,23 @@ RUN yum update -y && yum install -y \
   && yum clean all \
   && rm -rf /var/cache/yum
 
-ENV SPARK_VERSION 2.4.4
-ENV LIVY_VERSION 0.7.0
 ENV LOCAL_DIR_WHITELIST /tmp/
-ENV SPARK_HOME /opt/spark-$SPARK_VERSION-bin-hadoop2.7
-ENV APACHE apache-
 
 # apache livy
 RUN wget https://archive.apache.org/dist/incubator/livy/$LIVY_VERSION-incubating/${APACHE}livy-$LIVY_VERSION-incubating-bin.zip -O /tmp/livy.zip && \
   unzip /tmp/livy.zip -d /opt/ && \
+  mv /opt/${APACHE}livy-$LIVY_VERSION-incubating-bin /opt/livy && \
   rm /tmp/livy.zip && \
-  mkdir /opt/${APACHE}livy-$LIVY_VERSION-incubating-bin/logs
+  mkdir /opt/livy/logs
 
 # apache spark
 RUN wget https://archive.apache.org/dist/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-hadoop2.7.tgz -O /tmp/spark.tgz && \
   tar -xvzf /tmp/spark.tgz -C /opt/ && \
+  mv /opt/spark-$SPARK_VERSION-bin-hadoop2.7 /opt/spark && \
   rm /tmp/spark.tgz
 
 COPY init /opt/docker-init
-COPY conf/livy.conf /opt/${APACHE}livy-$LIVY_VERSION-incubating-bin/conf/livy.conf
+COPY conf/livy.conf /opt/livy/conf/livy.conf
 
 # expose ports
 EXPOSE 8998
