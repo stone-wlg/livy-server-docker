@@ -1,16 +1,18 @@
 # select operating system
 FROM ubuntu:20.10
 
-ARG SPARK_VERSION
-ARG LIVY_VERSION
-ARG APACHE
+ARG SPARK_VERSION=2.4.7
+ARG LIVY_VERSION=0.7.0
+ARG APACHE=apache-
 
 ENV LOCAL_DIR_WHITELIST /tmp/
 
 RUN apt-get update -y && apt-get install -y \
-    default-jre-headless \
+    openjdk-8-jdk-headless \
     unzip \
     wget \
+    python3 \
+    python \
   && apt-get clean \
   # Apache Livy 
   && wget https://archive.apache.org/dist/incubator/livy/$LIVY_VERSION-incubating/${APACHE}livy-$LIVY_VERSION-incubating-bin.zip -O /tmp/livy.zip \
