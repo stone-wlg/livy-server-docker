@@ -13,6 +13,7 @@ RUN apt-get update -y && apt-get install -y \
     wget \
     python3 \
     python \
+    krb5-user \
   && apt-get clean \
   # Apache Livy 
   && wget https://archive.apache.org/dist/incubator/livy/$LIVY_VERSION-incubating/${APACHE}livy-$LIVY_VERSION-incubating-bin.zip -O /tmp/livy.zip \
