@@ -38,7 +38,7 @@ function livy_server_service(){
 }
 
 function main(){
-    validate
+    # validate
     write_config_options /opt/livy/conf/livy.conf
     livy_server_service
     start 
